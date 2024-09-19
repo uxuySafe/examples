@@ -1,46 +1,138 @@
-# Getting Started with Create React App
+## use @rainbow-me/rainbowkit 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+uxuyWallet is a wallet that integrates with the UXUY Wallet SDK. It allows users to connect their UXUY Wallet to the dApp.
 
-## Available Scripts
+[uxuyWallet](/src/wallets/uxuyWallet.ts)
+``` ts 
+import { connectorsForWallets } from '@rainbow-me/rainbowkit';
+import { rainbowWallet,  walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
 
-In the project directory, you can run:
+const logoUrl = "<app-logo-url>"
+const uxuyWallet = ({
+    walletConnectParameters,
+    projectId,
+}: DefaultWalletOptions): Wallet => {
+    let provider: unknown | EIP1193Provider
+    return {
+        id: 'uxuyWallet',
+        name: 'UXUY Wallet',
+        // iconUrl: sdk.getAppInfo().logo,
+        iconUrl: logoUrl,
+        installed: true,
+        iconBackground: '#000000',
+        createConnector: (walletDetails) => {
+            return createConnector((config) => ({
+                ...injected({
+                    // shimDisconnect: false
+                })(config),
+                ...walletDetails,
+                getProvider: async () => {
+                    if (provider) return provider
+                    debugger
+                    const { WalletTgSdk } = (await import("@uxuycom/web3-tg-sdk")).default
+                    const sdk = new WalletTgSdk({
+                        // @ts-ignore
+                        metaData: {
+                            icon: walletConnectParameters?.metadata?.icons?.[0],
+                            name: walletConnectParameters?.metadata?.name,
+                            description: walletConnectParameters?.metadata?.description,
+                            url: walletConnectParameters?.metadata?.url,
+                        }
+                    })
+                    provider = sdk.ethereum
+                    return provider
+                },
+            }))
+        },
 
-### `npm start`
+    };
+};
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+const chains: readonly [Chain, ...Chain[]] = [
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  base,
+];
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+const connectors = connectorsForWallets(
+  [
+    {
+      groupName: 'Recommended',
+      wallets: [uxuyWallet, rainbowWallet, walletConnectWallet],
+    },
+  ],
+  {
+    appName: 'test demo',
+    projectId: 'YOUR_PROJECT_ID',
+  }
+);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const config = createConfig({
+  // use rainbowkit wallets
+  connectors,
 
-### `npm run build`
+  // only use wagmin connectors
+  // connectors:[uxuyWalletConnector, injected()],
+  chains: chains,
+  // https://wagmi.sh/react/api/transports
+  transports: {
+    [mainnet.id]: http("<YOUR_RPC_URL>")
+  }
+});
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## use wagmi
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+uxuyWallet is a wallet that integrates with the UXUY Wallet SDK. It allows users to connect their UXUY Wallet to the dApp.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[uxuyWalletConnector](/src/wallets/uxuyWallet.ts)
+``` ts 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+import { createConnector, Connector, } from "wagmi"
+import { injected } from 'wagmi/connectors';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+const logoUrl = "<app-logo-url>"
 
-## Learn More
+export const uxuyWalletConnector = createConnector((config) => {
+    const sdk = new WalletTgSdk()
+    return {
+        ...injected(
+            {
+                shimDisconnect: false,
+                target: () => ({
+                    id: "uxuyWallet",
+                    name: "UXUY Wallet",
+                    icon: logoUrl,
+                    provider: sdk.ethereum as EIP1193Provider,
+                })
+            }
+        )(config)
+    }
+})
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const config = createConfig({
+  connectors:[uxuyWalletConnector, injected()],
+  chains: [
+    mainnet,
+    polygon,
+    optimism,
+    arbitrum,
+    base,
+  ],
+  // https://wagmi.sh/react/api/transports
+  transports: {
+    [mainnet.id]: http("<YOUR_RPC_URL>"),
+    [polygon.id]: http("<YOUR_RPC_URL>"),
+    [optimism.id]: http("<YOUR_RPC_URL>"),
+    [arbitrum.id]: http("<YOUR_RPC_URL>"),
+    [base.id]: http("<YOUR_RPC_URL>"),
+  }
+});
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
