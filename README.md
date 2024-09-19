@@ -7,6 +7,8 @@ uxuyWallet is a wallet that integrates with the UXUY Wallet SDK. It allows users
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { rainbowWallet,  walletConnectWallet } from '@rainbow-me/rainbowkit/wallets';
 
+import { WagmiProvider, createConfig, http } from 'wagmi';
+
 const logoUrl = "<app-logo-url>"
 const uxuyWallet = ({
     walletConnectParameters,
@@ -94,8 +96,9 @@ uxuyWallet is a wallet that integrates with the UXUY Wallet SDK. It allows users
 [uxuyWalletConnector](/src/wallets/uxuyWallet.ts)
 ``` ts 
 
-import { createConnector, Connector, } from "wagmi"
+import { createConnector, Connector, createConfig, http } from "wagmi"
 import { injected } from 'wagmi/connectors';
+
 
 const logoUrl = "<app-logo-url>"
 

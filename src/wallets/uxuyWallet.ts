@@ -61,7 +61,6 @@ export const uxuyWalletConnector = createConnector((config) => {
     return {
         ...injected(
             {
-                shimDisconnect: false,
                 target: () => ({
                     id: "uxuyWallet",
                     name: "UXUY Wallet",
