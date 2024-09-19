@@ -30,7 +30,6 @@ const uxuyWallet = ({
                 ...walletDetails,
                 getProvider: async () => {
                     if (provider) return provider
-                    debugger
                     const { WalletTgSdk } = (await import("@uxuycom/web3-tg-sdk")).default
                     const sdk = new WalletTgSdk({
                         // @ts-ignore
