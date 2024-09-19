@@ -2,13 +2,19 @@ import '@rainbow-me/rainbowkit/styles.css';
 import './index.css';
 import React from 'react';
 
+
+
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 
 
 import { WagmiProvider, createConfig, http } from 'wagmi';
-import { Chain } from '@rainbow-me/rainbowkit';
+import {
+  Chain,
+  createAuthenticationAdapter,
+  RainbowKitAuthenticationProvider,
+} from '@rainbow-me/rainbowkit';
 
 import {
   arbitrum,
@@ -33,6 +39,8 @@ import {
   rainbowWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
+
+import { AuthenticationProvider } from "./adapter/authenticationAdapter"
 
 
 import { injected } from "wagmi/connectors"
@@ -107,9 +115,11 @@ root.render(
   <React.StrictMode>
     <WagmiProvider config={config} >
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
-          <App />
-        </RainbowKitProvider>
+        <AuthenticationProvider>
+          <RainbowKitProvider>
+            <App />
+          </RainbowKitProvider>
+        </AuthenticationProvider>
       </QueryClientProvider>
     </WagmiProvider>
   </React.StrictMode>
