@@ -40,10 +40,10 @@ export const uxuyWallet = ({
                         const sdk = new WalletTgSdk({
                             // @ts-ignore
                             metaData: {
-                                // icon: options.iconUrl,
-                                // name: walletConnectParameters?.metadata?.name,
-                                // description: walletConnectParameters?.metadata?.description,
-                                // url: walletConnectParameters?.metadata?.url,
+                                icon: options?.iconUrl,
+                                name: options?.name,
+                                description: options?.description,
+                                url: options?.url,
                             }
                         })
                         provider = sdk.ethereum
