@@ -1,0 +1,47 @@
+{
+  "name": "tonconnect-v2",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@ton/ton": "^15.0.0",
+    "@tonconnect/sdk": "^3.0.5",
+    "@tonconnect/ui": "^2.0.9",
+    "@tonconnect/ui-react": "^2.0.9",
+    "assert": "^2.1.0",
+    "buffer": "^6.0.3",
+    "i": "^0.3.7",
+    "npm": "^10.8.3",
+    "process": "^0.11.10",
+    "react": "^18.3.1",
+    "react-app-rewired": "^2.2.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
+    "tonweb": "^0.0.66",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "dev": "react-app-rewired start",
+    "build": "cross-env NODE_ENV=production react-app-rewired build ",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

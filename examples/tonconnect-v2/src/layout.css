@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    /* padding: 0;
+    margin: 0; */
+}
+body {
+    max-width: 100vw;
+    word-break: break-all;
+}
+
+input {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+header {
+    display: inline-flex;
+    justify-content: space-between;
+}
+.header-item{
+
+    margin-right: 20px;
+    font-size: 18px;
+    text-decoration:underline;
+    cursor: pointer;
+}
