@@ -1,22 +1,28 @@
-// export * from "react-router-dom"
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
+import { createBrowserRouter, redirect, RouterProvider, PathRouteProps } from 'react-router-dom'
+export * from "react-router-dom"
 
 import Layout from './layout';
-import TonconnectSdk from './pages/tonconnectSdk';
-import TonconnectUiReact from './pages/tonconnectUiReact';
-
 export const routes = [
 
     {
-        name: "tonconnect-sdk",
-        path: "tonconnectsdk",
-        Component: TonconnectSdk,
+        name: "tonconnect-ui",
+        path: "/tonconnect-ui",
+        // Component: TonconnectSdk,
+        lazy: async ()=>{
+            return {
+                Component: (await import('./pages/tonconnectUi')).default
+            }
+        }
     },
     {
         name: "tonconnect-ui-react",
         path: "/",
-        Component: TonconnectUiReact,
+        lazy: async ()=>{
+            return {
+                Component: (await import('./pages/tonconnectUiReact')).default
+            }
+        }
+        // Component: TonconnectUiReact,
     }
 ]
 const router = createBrowserRouter([

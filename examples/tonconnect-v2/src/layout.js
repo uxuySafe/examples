@@ -11,7 +11,7 @@ function Header() {
         <header>
             {
                 routes.map((route, index) => (
-                    <div key={index} className="header-item" onClick={() => navigate(route.path)}>
+                    <div key={index} className="header-item" onClick={() => location.href = route.path}>
                         {route.name}
                     </div>
                 ))

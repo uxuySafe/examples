@@ -1,6 +1,7 @@
 
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { TonConnectUI } from './components/actions';
+import { useLocation } from 'react-router-dom';
 export default function TonConnectUiReact() {
     return (
         <TonConnectUIProvider
@@ -45,3 +46,5 @@ export default function TonConnectUiReact() {
         </TonConnectUIProvider>
     )
 }
+
+
