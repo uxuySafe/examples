@@ -25,7 +25,7 @@ const tonConnectUI =  new TonConnectUI({
 
                 universalLink: "https://t.me/UXUYbot/app",
                 bridgeUrl: "https://bridge.tonapi.io/bridge",
-                imageUrl: "https://uxuy.com/favicon.ico",
+                imageUrl: "https://raw.githubusercontent.com/uxuycom/uxuy-docsite/main/static/assets/UXUYWallet-logo/UXUYWallet_logo_circle.svg",
                 platforms: ["android", "ios", "linux", "windows", "macos"],
             },
             {
