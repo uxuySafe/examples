@@ -384,6 +384,7 @@ export const TonConnectUI = () => {
     return (
 
         <div>
+            <button onClick={() => tonConnectUI.openSingleWalletModal("uxuyTonWallet")}>Connect to UXUY Wallet</button>
             <TonConnectButton>
                 Connect to TON UI
             </TonConnectButton>

@@ -16,7 +16,7 @@ const tonConnectUI =  new TonConnectUI({
 
 
                 name: "UXUY Wallet",
-                appName: "UXUY Wallet",
+                appName: "uxuyTonWallet",
 
 
                 // we will support tonconnect-v2 in the future
@@ -56,36 +56,8 @@ export function TonConnectUiSdk() {
     const [wallet, setWallet] = useState({})
 
 
-    // const customWallet = [
-    //     {
-
-    //         name: "UXUY Wallet",
-    //         appName: "UXUY Wallet",
-
-    //         // we will support 
-    //         jsBridgeKey: "uxuyTonWallet",
-    //         injected: false,
-
-    //         universalLink: "https://t.me/UXUYbot/app",
-    //         bridgeUrl: "https://bridge.tonapi.io/bridge",
-    //         imageUrl: "https://raw.githubusercontent.com/uxuycom/uxuy-docsite/main/static/assets/UXUYWallet-logo/UXUYWallet_logo_circle.svg",
-    //         platforms: ["android", "ios", "linux", "windows", "macos"],
-
-    //     },
-    //     {
-    //         name: "tonkeeper injected",
-    //         injected: true,
-    //         jsBridgeKey: "tonkeeper",
-    //         platform: ['ios', "android"]
-    //     }
-    // ]
-
-
     useLayoutEffect(() => {
 
-        // tonConnectUI.getWallets().then((res) => {
-        //     setWallets([...res])
-        // })
 
         const unsubscribe = tonConnectUI.onStatusChange(
             walletInfo => {
@@ -153,6 +125,7 @@ export function TonConnectUiSdk() {
             }
 
 
+            <button onClick={() => tonConnectUI.openSingleWalletModal("uxuyTonWallet")}>Connect to UXUY Wallet</button>
 
             <button onClick={async () => { tonConnectUI.openModal() }}>openModal</button>
             {

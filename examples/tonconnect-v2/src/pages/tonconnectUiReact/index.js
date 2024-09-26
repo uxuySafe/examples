@@ -13,7 +13,7 @@ export default function TonConnectUiReact() {
 
 
                         name: "UXUY Wallet",
-                        appName: "UXUY Wallet",
+                        appName: "uxuyTonWallet",
 
                         // we will support tonconnect-v2 in the future
                         // jsBridgeKey: "uxuyTonWallet",
