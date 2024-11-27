@@ -8,7 +8,9 @@ const useUXUYSDK = () => {
     import("@uxuycom/web3-tg-sdk")
       .then(module => module.WalletTgSdk)
       .then(WalletTgSdk => {
-        setTgSdk(new WalletTgSdk())
+        setTgSdk(new WalletTgSdk({
+          connect_direct_link: 'https://t.me/test1111_bot/abc'
+        }))
       })
   }, [])
 
