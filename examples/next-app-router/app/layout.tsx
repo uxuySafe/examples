@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import TMAWrapper from "@/components/TMAWrapper";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { EnvUnsupported } from "@/components/EnvUnsupported";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,8 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      > 
+        <ErrorBoundary fallback={<EnvUnsupported />}>
+          <TMAWrapper>
+            {children}
+          </TMAWrapper>
+        </ErrorBoundary>
       </body>
     </html>
   );
