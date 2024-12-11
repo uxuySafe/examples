@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@uxuycom/web3-tg-sdk": "^0.1.7"
+  }
+}
