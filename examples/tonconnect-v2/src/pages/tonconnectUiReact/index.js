@@ -21,7 +21,7 @@ export default function TonConnectUiReact() {
 
                         universalLink: "https://t.me/UXUYbot/app",
 
-                        bridgeUrl: "https://bridge.tonapi.io/bridge",
+                        bridgeUrl: "https://bridge.uxuy.me/bridge",
                         imageUrl: "https://raw.githubusercontent.com/uxuycom/uxuy-docsite/main/static/assets/UXUYWallet-logo/UXUYWallet_logo_circle.svg",
                         platforms: ["android", "ios", "linux", "windows", "macos"],
                     },
